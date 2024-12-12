@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ wishlist.name }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        li {
+            background: #ffffff;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .price {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .purchased {
+            font-size: 14px;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .not-purchased {
+            font-size: 14px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ wishlist.name }}</h1>
+    <ul>
+        {% for gift in gifts %}
+            <li>
+                <span>{{ gift.name }}</span>
+                <span class="price">${{ gift.price }}</span>
+                {% if gift.purchased %}
+                    <span class="purchased">(Purchased)</span>
+                {% else %}
+                    <span class="not-purchased">(Not Purchased)</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+         {% comment %} {% else %}
+            <li>No gifts left to purchase!</li>
+        {% endif %} {% endcomment %}
+    </ul>
+    <a href="/wishlist">Back to Wishlist</a>
+    </ul>
+</body>
+</html>
